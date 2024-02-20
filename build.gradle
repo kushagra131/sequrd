@@ -1,14 +1,32 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.2'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'jacoco'
+	alias(libs.plugins.org.springframework.boot)
+	alias(libs.plugins.io.spring.dependency.management)
 }
 
 group = 'com.application.server'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 java {
 	sourceCompatibility = '21'
+	// Apply a specific Java toolchain to ease working on different environments.
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.11"
+	reportsDirectory = layout.buildDirectory.dir('reports/jacoco')
+}
+
+test {
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
 }
 
 configurations {
@@ -22,16 +40,30 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	implementation(libs.spring.boot.starter.security)
+	implementation(libs.spring.boot.starter.web)
+	compileOnly(libs.lombok)
+	developmentOnly(libs.spring.boot.dev.tools)
+	annotationProcessor(libs.spring.boot.configuration.processor)
+	annotationProcessor(libs.spring.boot.dev.tools)
+	testImplementation(libs.spring.boot.starter.test)
+	testImplementation(libs.spring.security.test)
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Custom Tasks
+tasks.register('hello') {
+	doLast {
+		println('Hello!')
+	}
+}
+
+tasks.register('greet') {
+	doLast {
+		println('Running Custom Tasks!!')
+	}
+	dependsOn('hello')
 }
