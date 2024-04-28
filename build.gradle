@@ -1,3 +1,4 @@
+// --> Build Plugins
 plugins {
 	id 'java'
 	id 'jacoco'
@@ -8,6 +9,7 @@ plugins {
 group = 'com.application.server'
 version = '0.0.1'
 
+// --> Plugin config for 'java'
 java {
 	sourceCompatibility = '21'
 	// Apply a specific Java toolchain to ease working on different environments.
@@ -16,18 +18,22 @@ java {
 	}
 }
 
+// --> Plugin config for 'jacoco'
 jacoco {
 	toolVersion = "0.8.11"
 	reportsDirectory = layout.buildDirectory.dir('reports/jacoco')
 }
 
 test {
-	finalizedBy jacocoTestReport // report is always generated after tests run
+	// Report is always generated after tests run
+	finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
-	dependsOn test // tests are required to run before generating the report
+	// Tests are required to run before generating the report
+	dependsOn test
 }
+// --> End
 
 configurations {
 	compileOnly {
@@ -39,6 +45,7 @@ repositories {
 	mavenCentral()
 }
 
+// --> Dependencies
 dependencies {
 	implementation(libs.spring.boot.starter.security)
 	implementation(libs.spring.boot.starter.web)
@@ -54,7 +61,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// Custom Tasks
+// --> Custom Tasks
 tasks.register('hello') {
 	doLast {
 		println('Hello!')
