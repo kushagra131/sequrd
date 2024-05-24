@@ -1,25 +1,27 @@
 package com.application.server.sequrd.controller.home;
 
+import com.application.server.sequrd.service.HomeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
 public class HomeController {
 
+    private HomeService homeService;
+
+    @Autowired
+    public HomeController(HomeService homeService) {
+        this.homeService = homeService;
+    }
+
     @GetMapping("/home")
     public ResponseEntity<?> home() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("title", "SEQURD.io");
-
         return ResponseEntity
-                .ofNullable(model);
+                .ofNullable(homeService.getHomeDetails());
     }
 
     @PostMapping("/login")

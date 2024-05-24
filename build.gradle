@@ -49,6 +49,8 @@ repositories {
 dependencies {
 	implementation(libs.spring.boot.starter.security)
 	implementation(libs.spring.boot.starter.web)
+	implementation(libs.spring.boot.starter.data.jpa)
+	runtimeOnly(libs.postgresql)
 	compileOnly(libs.lombok)
 	developmentOnly(libs.spring.boot.dev.tools)
 	annotationProcessor(libs.spring.boot.configuration.processor)
@@ -57,11 +59,11 @@ dependencies {
 	testImplementation(libs.spring.security.test)
 }
 
-tasks.named('test') {
+tasks.withType(Test).configureEach {
 	useJUnitPlatform()
 }
 
-// --> Custom Tasks
+// --> Custom Tasks Example
 tasks.register('hello') {
 	doLast {
 		println('Hello!')
