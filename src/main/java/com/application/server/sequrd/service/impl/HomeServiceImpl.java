@@ -11,6 +11,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public HomeDetails getHomeDetails() {
+
         return new HomeDetails(UUID.randomUUID().toString(), "SEQURD.io");
     }
 }

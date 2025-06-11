@@ -50,6 +50,9 @@ dependencies {
 	implementation(libs.spring.boot.starter.security)
 	implementation(libs.spring.boot.starter.web)
 	implementation(libs.spring.boot.starter.data.jpa)
+	implementation(libs.spring.boot.starter.actuator)
+	implementation platform(libs.aws.sdk.bom)
+	implementation(libs.aws.sdk.s3)
 	runtimeOnly(libs.postgresql)
 	compileOnly(libs.lombok)
 	developmentOnly(libs.spring.boot.dev.tools)
@@ -61,18 +64,4 @@ dependencies {
 
 tasks.withType(Test).configureEach {
 	useJUnitPlatform()
-}
-
-// --> Custom Tasks Example
-tasks.register('hello') {
-	doLast {
-		println('Hello!')
-	}
-}
-
-tasks.register('greet') {
-	doLast {
-		println('Running Custom Tasks!!')
-	}
-	dependsOn('hello')
 }
