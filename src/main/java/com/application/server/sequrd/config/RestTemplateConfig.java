@@ -14,8 +14,8 @@ public class RestTemplateConfig {
     @Bean
     RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
-                .setConnectTimeout(Duration.of(5, ChronoUnit.SECONDS))
-                .setReadTimeout(Duration.of(5, ChronoUnit.SECONDS))
+                .connectTimeout(Duration.of(5, ChronoUnit.SECONDS))
+                .readTimeout(Duration.of(5, ChronoUnit.SECONDS))
                 .basicAuthentication("user", "admin")
                 .build();
 
