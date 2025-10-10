@@ -12,7 +12,7 @@ version = '0.0.1'
 // --> Plugin config for 'java'
 java {
 	sourceCompatibility = '21'
-	// Apply a specific Java toolchain to ease working on different environments.
+	// --> Apply a specific Java toolchain to ease working on different environments.
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
@@ -25,12 +25,12 @@ jacoco {
 }
 
 test {
-	// Report is always generated after tests run
+	// --> Report is always generated after tests run
 	finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
-	// Tests are required to run before generating the report
+	// --> Tests are required to run before generating the report
 	dependsOn test
 }
 // --> End
