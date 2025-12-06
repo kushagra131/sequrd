@@ -19,5 +19,5 @@ public class RestClientConfig {
                 .messageConverters(configurer -> configurer.add(new MappingJackson2HttpMessageConverter()))
                 .build();
     }
-    
+
 }

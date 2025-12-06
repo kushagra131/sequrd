@@ -47,19 +47,37 @@ repositories {
 
 // --> Dependencies
 dependencies {
-	implementation(libs.spring.boot.starter.security)
+    // --> Spring Boot Starter Web
 	implementation(libs.spring.boot.starter.web)
-	implementation(libs.spring.boot.starter.data.jpa)
+    // --> Spring Boot Starter Security
+    implementation(libs.spring.boot.starter.security)
+    // --> Spring Boot Starter Data JPA
+    implementation(libs.spring.boot.starter.data.jpa)
+    // --> Spring Boot Starter Actuator
 	implementation(libs.spring.boot.starter.actuator)
+    // --> AWS SDK
 	implementation platform(libs.aws.sdk.bom)
 	implementation(libs.aws.sdk.s3)
+    // --> PostgreSQL
 	runtimeOnly(libs.postgresql)
+    // --> Project Lombok
 	compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    // --> Spring Boot Dev Tools
 	developmentOnly(libs.spring.boot.dev.tools)
+    annotationProcessor(libs.spring.boot.dev.tools)
+    // --> Spring Boot Configuration Processor
 	annotationProcessor(libs.spring.boot.configuration.processor)
-	annotationProcessor(libs.spring.boot.dev.tools)
+
+    // ----------- Testing Dependencies ------------ //
+
+    // --> Spring Boot Starter Test
 	testImplementation(libs.spring.boot.starter.test)
+    // --> Spring Boot Starter Security Test
 	testImplementation(libs.spring.security.test)
+    // --> Project Lombok
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
 }
 
 tasks.withType(Test).configureEach {
