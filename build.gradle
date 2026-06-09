@@ -6,15 +6,15 @@ plugins {
 	alias(libs.plugins.io.spring.dependency.management)
 }
 
-group = 'com.application.server'
+group = 'com.application.sequrd.server'
 version = '0.0.1'
 
 // --> Plugin config for 'java'
 java {
-	sourceCompatibility = '21'
+	sourceCompatibility = '25'
 	// --> Apply a specific Java toolchain to ease working on different environments.
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
