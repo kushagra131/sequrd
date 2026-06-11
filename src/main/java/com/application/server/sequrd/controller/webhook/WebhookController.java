@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/webhook")
 public class WebhookController {
 
-    @GetMapping("/webhook")
+    @GetMapping("")
     public ResponseEntity<?> get() {
         return ResponseEntity
                 .ok("WebHook Controller Works!!");

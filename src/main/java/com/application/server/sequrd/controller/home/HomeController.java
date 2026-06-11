@@ -34,7 +34,7 @@ import java.net.URI;
  * <p> - Logging all requests and errors to a centralized log file. </p>
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/home")
 public class HomeController {
 
     private final HomeService homeService;
@@ -43,8 +43,8 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-    @GetMapping("/home")
-    public ResponseEntity<?> home() {
+    @GetMapping("/details")
+    public ResponseEntity<?> getDetails() {
         return ResponseEntity
                 .ofNullable(homeService.getHomeDetails());
     }
